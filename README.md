@@ -11,7 +11,7 @@ Check out my Twitch if you would like to see the bot in action: [https://www.twi
 * If you'd like to have hot reloads you can use nodemon: `npm install -g nodemon`
 * Because this is made to have a NodeMCU running as a TCP-server, you might want to remove that part from the code.
 
-### Supported commands:
+### Supported commands ([*AUTH] = shouldn't work for other people than me):
 * !vote
 * !startvote choice1 choice2 choiceN [*AUTH]
 * !endvote [*AUTH]
