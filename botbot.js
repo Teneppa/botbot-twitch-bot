@@ -4,6 +4,8 @@
 
 const tmi = require('tmi.js');
 const net = require('net');
+const SerialPort = require('serialport')
+const serialport = new SerialPort('/dev/ttyUSB0', { baudRate: 115200 })
 
 var oauth = process.env.OAUTH;
 
@@ -78,14 +80,12 @@ function printVoteStatus() {
     }
 
     console.log('==========================')
-    //client.say('teukkaniikka', '========= VOTE STATUS =========');
     for(var i=0; i<percentageList.length; i++) {
         var str = String(String(percentageList[i].value)+"% voted "+String(percentageList[i].voteName));
         console.log(str);
         client.say('teukkaniikka', str);
     }
     console.log('==========================')
-    //client.say('teukkaniikka', '========= VOTE STATUS ENDS =========');
 }
 
 function startVote(choiceArray) {
@@ -151,6 +151,11 @@ localClient.on('data', (data) => {
 // Called every time a message comes in
 function onMessageHandler(target, context, msg, self) {
   if (self) { return; } // Ignore messages from the bot
+
+  // If there's a new message, turn the relay on and off
+  if(context["username"] != 'teukkaniikka') {
+    serialport.write('asdasd;');
+  }
 
   console.log(target);
   console.log(context["username"]);
